@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
       flex: 1,
       color: theme.colors.heading,
       fontSize: 15,
+      fontFamily: theme.fonts.text500,
       textAlign: "center",
    }
 });

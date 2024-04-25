@@ -12,4 +12,3 @@ export const GuildIcon = () => {
       />
    );
 };
-// 02:09:09

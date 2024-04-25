@@ -1,15 +1,21 @@
 import { FlatList, View, Text } from "react-native";
 import { styles } from "./styles";
+import { useState } from "react";
 import { Profile } from "../../components/Profile";
 import { ButtonAdd } from "../../components/ButtonAdd";
-import { CategorySelect } from "../../components/CategorySelect";
-import { useState } from "react";
 import { ListHeader } from "../../components/ListHeader";
 import { Appointment } from "../../components/Appointment";
 import { ListDivider } from "../../components/ListDivider";
+import { CategorySelect } from "../../components/CategorySelect";
+import { Background } from "../../components/Background";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../utils/types/RootStackParamList";
 
 export function Home() {
    const [category, setCategory] = useState('');
+
+   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
    const appointments = [
       {
@@ -42,11 +48,19 @@ export function Home() {
       id === category ? setCategory("") : setCategory(id);
    };
 
+   const handleAppointmentDetails = () => {
+      navigation.navigate("AppointmentDetails");
+   };
+
+   const handleAppointmentCreate = () => {
+      navigation.navigate("AppointmentCreate");
+   };
+
    return (
-      <View style={styles.container}>
+      <Background>
          <View style={styles.header}>
             <Profile />
-            <ButtonAdd />
+            <ButtonAdd onPress={handleAppointmentCreate} />
          </View>
 
          <CategorySelect
@@ -63,15 +77,16 @@ export function Home() {
                data={appointments}
                keyExtractor={({ id }) => id}
                renderItem={({ item }) => (
-                  <Appointment data={item} />
+                  <Appointment
+                     onPress={handleAppointmentDetails}
+                     data={item}
+                  />
                )}
                ItemSeparatorComponent={() => <ListDivider />}
                style={styles.matches}
                showsVerticalScrollIndicator={false}
             />
          </View>
-      </View>
+      </Background>
    );
 }
-
-// 41:42

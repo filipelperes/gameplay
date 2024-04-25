@@ -1,17 +1,18 @@
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { AuthRoutes } from "./auth.routes";
+import { theme } from "../global/styles/theme";
 
 export function Routes() {
-   const theme = {
+   const custom = {
       ...DefaultTheme,
       colors: {
          ...DefaultTheme.colors,
-         background: "transparent"
+         background: theme.colors.secondary100
       }
    };
 
    return (
-      <NavigationContainer theme={theme}>
+      <NavigationContainer theme={custom}>
          <AuthRoutes />
       </NavigationContainer>
    );
