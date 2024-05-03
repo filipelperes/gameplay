@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import discord from "../../assets/discord.png";
 import { styles } from "./styles";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { RectButton, RectButtonProps, GestureHandlerRootView } from "react-native-gesture-handler";
 
 type Props = RectButtonProps & {
    title: string;
@@ -9,20 +9,22 @@ type Props = RectButtonProps & {
 };
 
 export const Button = ({ title, showIcon = false, ...rest }: Props) => (
-   <RectButton
-      style={styles.container}
-      {...rest}
-   >
-      {showIcon &&
-         <View style={styles.iconWrapper}>
-            <Image
-               source={discord}
-               style={styles.icon}
-            />
-         </View>
-      }
-      <Text style={styles.title}>
-         {title}
-      </Text>
-   </RectButton>
+   <GestureHandlerRootView>
+      <RectButton
+         style={styles.container}
+         {...rest}
+      >
+         {showIcon &&
+            <View style={styles.iconWrapper}>
+               <Image
+                  source={discord}
+                  style={styles.icon}
+               />
+            </View>
+         }
+         <Text style={styles.title}>
+            {title}
+         </Text>
+      </RectButton>
+   </GestureHandlerRootView>
 );

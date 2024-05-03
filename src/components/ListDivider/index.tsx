@@ -2,6 +2,15 @@ import { View } from 'react-native';
 
 import { styles } from './styles';
 
-export const ListDivider = () => (
-   <View style={styles.container} />
+type Props = {
+   isCentered?: boolean;
+};
+
+export const ListDivider = ({ isCentered = false }: Props) => (
+   <View style={[
+      styles.container,
+      isCentered && {
+         marginVertical: 12
+      }
+   ]} />
 );
